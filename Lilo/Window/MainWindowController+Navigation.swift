@@ -237,6 +237,11 @@ extension MainWindowController: WKWebViewTab.Delegate {
             }
         }
         if let updatedTab {
+            if isVisibleTab(tab.id),
+               tab.view.isHidden {
+                tab.view.isHidden = false
+            }
+
             // Favicon was cleared above on host change: ship it so the UI drops the stale icon.
             enqueueVisibleTabUpdate(updatedTab, includeFavicon: shouldRefreshFavicon)
             if tab.id == tabManager.activeOpenTabId { syncPageBar() }

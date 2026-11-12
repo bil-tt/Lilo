@@ -1015,7 +1015,8 @@ extension MainWindowController {
         (contentContainerView as? ContentContainerView)?.updateStage(under: nextView, fixedSize: !isSplitPane && engine.agentViewport != nil)
 
         processOutgoingContentViews(outgoingViews)
-        nextView.isHidden = false
+        // A new tab shows the themed container until it has a navigation, even when its WebView was prewarmed.
+        nextView.isHidden = tabManager.tab(for: engine.id)?.url == nil && engine.currentURL == nil
         if tabManager.tab(for: engine.id)?.hasUnreadNotification == true {
             enqueueVisibleTabUpdate(updateRuntimeTab(id: engine.id) { $0.hasUnreadNotification = false })
         }

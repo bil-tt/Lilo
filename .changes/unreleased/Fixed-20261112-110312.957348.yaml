@@ -1,0 +1,3 @@
+kind: Fixed
+body: Keep blank new tabs on the themed background until their URL updates, including prewarmed tabs.
+time: 2026-11-12T11:03:12.957348+08:00
